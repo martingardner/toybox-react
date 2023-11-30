@@ -11,6 +11,7 @@ export const CompRight = () => {
         <section>
             <h2>Comp Right</h2>
             <div>Count: {count}</div>
+            <button onClick={ ()=> count.value++}>Update Count {count}</button>
         </section>
     )
 }
