@@ -5,7 +5,6 @@ import Counter from './Counter';
 describe('Counter Tests', ()=> {
     const iCount = 1;
     
-
     test('Counter - Heading - should have the title Count 1', () => {
         const { getByTestId } = render(<Counter initCount={iCount} />);
         const h2text = getByTestId(`count-${iCount}`).textContent;
@@ -13,6 +12,7 @@ describe('Counter Tests', ()=> {
         expect(h2text).toEqual("Count 1")
     });
 
+    
     test('Counter - Expect Increment to increment by 1', ()=> {
         const {getByTestId, getByRole} = render(<Counter initCount={iCount} />);
         const incrementBtn = getByRole("button", {name: "Increment"});
@@ -24,7 +24,7 @@ describe('Counter Tests', ()=> {
         const h2textAfterBtn = getByTestId(`count-${iCount}`).textContent;
         expect(h2textAfterBtn).toEqual("Count 2")
     });
-
+ 
     test('Counter - Expect Decrement to decrement by 1', ()=> {
         const {getByTestId, getByRole} = render(<Counter initCount={iCount} />);
         const decrementBtn = getByRole("button", {name: "Decrement"});
@@ -77,5 +77,12 @@ describe('Counter Tests', ()=> {
 
         const h2textAfterReset = getByTestId(`count-${iCount}`).textContent;
         expect(h2textAfterReset).toEqual(`Count ${iCount}`)
+    });
+    
+    test('Counter - test no initCount value provided defaults to 0', ()=> {
+        const {getByTestId} = render(<Counter />);
+        const h2Text = getByTestId(`count-0`).textContent;
+
+        expect(h2Text).toEqual("Count 0");
     });
 });
