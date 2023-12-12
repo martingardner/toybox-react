@@ -22,7 +22,7 @@ function Counter({initCount}) {
 
   return (
     <>
-      <h1 data-testid={`count-${initCount}`}>Count {count}</h1>
+      <h2 data-testid={`count-${initCount}`}>Count {count}</h2>
       <button onClick={ ()=> increment()}>Increment</button>
       <button onClick={ ()=> decrement()}>Decrement</button>
       <button onClick={ ()=> reset()}>Reset</button>
