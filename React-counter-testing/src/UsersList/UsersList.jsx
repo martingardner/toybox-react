@@ -7,12 +7,9 @@ function BookObjectRender(){
     const [jsonData, setJsonData] = useState({});
 
     const fetchResponse = useMemo(async() => {
-        if(!callLoaded){
             const response = await JSONplaceholderFetch();
-            console.log('response', response);
             setJsonData(response);
             setCallLoaded(true);
-        }
     }, [])
 
 
