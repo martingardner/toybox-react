@@ -1,6 +1,6 @@
-import { render, waitFor, act, screen, mockImplementation, waitForElement } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { usersListMockData } from './UsersListMockData';
-//import { JSONplaceholder } from '../api/JSONplaceholder';
+
 import React from 'react';
 import UsersList from './UsersList';
 
@@ -10,7 +10,7 @@ describe('UsersList Component Tests', () => {
 
     global.fetch = jest.fn( ()=> {
         return Promise.resolve( {
-            json: () => Promise.resolve(mockData())
+            json: () => Promise.resolve( ()=> mockData )
         })
     })
 
@@ -20,41 +20,20 @@ describe('UsersList Component Tests', () => {
     
     test('UsersList - Heading - should have h2 tag',  async () => {
         const { findByRole } = render(<UsersList />);
-        const h2Tag = await waitFor( ()=> findByRole("heading", { level: 2}));
+        const h2Tag = await findByRole("heading", { level: 2});
         expect(h2Tag).toBeTruthy();
     });
 
-    test('UsersList - Map List - with mock should have 5 results', async () => {
+    test('UsersList - Call Loaded UL - should resolve callLoaded to show ul',  async () => {
         const { findByRole } = render(<UsersList />);
-        const sectionElem = await waitFor( ()=> findByRole('section'), {timeout: 5000});
-        expect(sectionElem).toBeTruthy();
+        const ulElem = await findByRole('ul');
+        expect(ulElem).toBeTruthy();
     });
-    
-    /*
-    test('UsersList - fetchResponse mock should show data in ul', async ()=> {
-        
-        
-        
-        act( ()=> {
-            const { findByRole } = render(<UsersList />);
 
-            
-            const sectionExists = findByRole("section");
-            const liData = findByRole("li")
-            
-            
-            await waitFor( ()=> {
+    test('UsersList - Mock Fetch Data - should resolve to show 5 li elements', async() => {
+        const { findAllByRole } = render(<UsersList />);
+        const liElem = await findAllByRole('li');
+        expect(liElem.length).toEqual(5);
+    })
 
-            });
-           
-            
-            expect(sectionExists).toBeTruthy();
-            expect(liData.length).toEqual(5);
-        });
-       
-
-        
-        
-    });
-    */
 });
