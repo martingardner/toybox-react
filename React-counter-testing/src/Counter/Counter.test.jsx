@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react';
 import React from 'react';
 import Counter from './Counter';
 
-describe('Counter Tests', ()=> {
+describe('Counter Componenet Tests', ()=> {
     const iCount = 1;
     
     test('Counter - Heading - should have the title Count 1', () => {

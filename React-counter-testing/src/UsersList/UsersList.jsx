@@ -1,12 +1,12 @@
 import React, { useCallback, useState, useEffect, memo, useMemo } from 'react';
 import { JSONplaceholderFetch } from '../api/JSONplaceholder.js';
 
-function BookObjectRender(){
+function UsersList(){
 
     const [callLoaded, setCallLoaded] = useState(false);
     const [jsonData, setJsonData] = useState({});
 
-    const fetchResponse = useMemo(async() => {
+    useMemo(async() => {
             const response = await JSONplaceholderFetch();
             setJsonData(response);
             setCallLoaded(true);
@@ -15,12 +15,11 @@ function BookObjectRender(){
 
     return (
         <>
-            <h2>JSON Placeholder Response</h2>
+            <h2 data-testid="usersList-h2">JSON Placeholder Response</h2>
             {callLoaded && (
                 <section>
                     <ul>
                     {jsonData.map( (d, index) => {
-                        console.log('d', d);
                         return <li key={`employee-${index}-${d?.id}`}>{d?.name}</li>
                     })}
                     </ul>
@@ -30,4 +29,4 @@ function BookObjectRender(){
     )
 }
 
-export default memo(BookObjectRender)
+export default memo(UsersList)
