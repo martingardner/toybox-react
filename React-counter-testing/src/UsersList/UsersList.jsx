@@ -4,7 +4,7 @@ import { JSONplaceholderFetch } from '../api/JSONplaceholder.js';
 function UsersList(){
 
     const [callLoaded, setCallLoaded] = useState(false);
-    const [jsonData, setJsonData] = useState({});
+    const [jsonData, setJsonData] = useState([]);
 
     const apiCall = async () => {
         const response = await JSONplaceholderFetch();
