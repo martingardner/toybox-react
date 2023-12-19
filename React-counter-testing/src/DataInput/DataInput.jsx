@@ -8,11 +8,8 @@ function DataInput(){
 
     const updateName = (e) => {
         const value = e?.target?.value;
-        setName( ()=> {
-            return value;
-        })
+        setName(value)
     }
-
 
     return(
         <section>
